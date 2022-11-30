@@ -10,6 +10,8 @@ class DataLogger:
     file_name = str()
 
     is_file_open = False
+    
+    data_path = str()
 
     decimator = 1
     decimation_counter = 0
@@ -27,8 +29,10 @@ class DataLogger:
 
     # Initializer, opens the log file 
     def __init__(self, data_path , file_name = "" ,decimation = 1, flush_frequency = 1e3):
+        self.data_path = data_path
         self.decimator = decimation
         self.flush_setpoint = flush_frequency
+        
         self.create_file_name(data_path, file_name)
         
         self.file = open(self.file_name,'w+',newline='\n')
@@ -103,6 +107,9 @@ class DataLogger:
     
     def get_file_name(self):
         return os.path.basename(self.file_name)
+    
+    def get_full_path(self):
+        return os.path.join(self.data_path, self.file_name)
 
     def __del__(self):
         if self.is_file_open:
