@@ -1,9 +1,13 @@
+
+# How to restrict some options? 
+
 class CMI:
     
     selection_out_of_range_message = "Selection out of range. Please try again."
     selection_not_number = "Please enter a number. Please try again."
     
     cancel_command = "cnc"
+    exit_command = "exit"
         
     def __init__(self):
         pass
@@ -13,9 +17,10 @@ class CMI:
         for option in options:
             print("\t"*tabs + str(cc) +" - " + option)
             cc += 1
-        return self.get_selection(cc, tabs)
+        cc -= 1
+        return self._get_selection(cc, tabs)
             
-    def get_selection(self, cc, tabs):
+    def _get_selection(self, cc, tabs):
         while True:
             selection = input("\n\t"*(tabs) + "Please select an option: ")
             if selection.isnumeric():
@@ -25,6 +30,8 @@ class CMI:
                     print("\t"*(tabs+1) + self.selection_out_of_range_message)
             elif selection == self.cancel_command:
                 return "cnc"
+            elif selection == self.exit_command:
+                return "exit"
             else:
                 print("\t"*(tabs+1) + self.selection_not_number)
     
