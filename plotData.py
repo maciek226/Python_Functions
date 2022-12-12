@@ -215,6 +215,10 @@ class PlotData:
             self.auto_fit_y_data(index, y_name)
             self.auto_fit_x_data(index, x_name)
         if plot_type == 'line':
+            self.axes[index].plot(self.data_list[x_index],self.data_list[y_index],color='tab:'+color)
+            self.auto_fit_y_data(index, y_name)
+            self.auto_fit_x_data(index, x_name)
+        if plot_type == 'line_disc':
             x_new, y_new = self.split_line(x_name, y_name)
             self.axes[index].plot(x_new[self.line_plot_margin:-self.line_plot_margin],y_new[self.line_plot_margin:-self.line_plot_margin],color='tab:'+color)
             self.auto_fit_y_data(index, y_name)
