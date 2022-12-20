@@ -32,6 +32,8 @@ class DataLogger:
         self.data_path = data_path
         self.decimator = decimation
         self.flush_setpoint = flush_frequency
+        self.legend = list()
+        self.data = list()
         
         self.create_file_name(data_path, file_name)
         
