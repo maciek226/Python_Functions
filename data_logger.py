@@ -86,8 +86,8 @@ class DataLogger:
         if self.decimation_counter%self.decimator == 0:
             if not self.first_run:
                 self.first_run = True
-                self.time_offset = time.time()
-            time_stamp = [str( (time.time()-self.time_offset))]
+                self.time_offset = time.perf_counter()
+            time_stamp = [str( (time.perf_counter()-self.time_offset))]
             self.writer.writerow(time_stamp+self.data)
             self.data = list()
             self.decimation_counter = 0
